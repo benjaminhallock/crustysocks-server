@@ -13,9 +13,9 @@ const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
     origin: [
-      "http://localhost:5173", 
+      "http://localhost:5173",
       "https://crustysocks.vercel.app",
-      process.env.CORS_ORIGIN // Add flexible client URL
+      process.env.CORS_ORIGIN, // Add flexible client URL
     ].filter(Boolean),
     methods: ["GET", "POST"],
     credentials: true,
@@ -23,14 +23,16 @@ const io = new Server(httpServer, {
   transports: ["websocket", "polling"], // Add polling as fallback
 });
 
-app.use(cors({
-  origin: [
-    "http://localhost:5173", 
-    "https://crustysocks.vercel.app",
-    process.env.CLIENT_URL
-  ].filter(Boolean),
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://crustysocks.vercel.app",
+      process.env.CLIENT_URL,
+    ].filter(Boolean),
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
@@ -265,5 +267,5 @@ app.get("/", (req, res) => {
 });
 
 httpServer.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running at crustysocks-server.railway.app:${port}`);
 });
