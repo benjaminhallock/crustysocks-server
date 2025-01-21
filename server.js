@@ -267,5 +267,7 @@ app.get("/", (req, res) => {
 });
 
 httpServer.listen(port, () => {
-  console.log(`Server is running at crustysocks-server.railway.app:${port}`);
+  console.log(
+    `Server is running on https://crustysocks-server-production.up.railway.app or http://localhost:${port}`
+  );
 });
